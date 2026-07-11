@@ -1,0 +1,140 @@
+from datetime import datetime
+import webbrowser
+name=input("Enter your name please\n")
+if name.isalpha():
+print("You name is",name)
+
+print("Namesta, Welcome to AI chatbot How can i help you\n")
+print("If You had something then tell me i am your friend\n")
+print("I am keepong your secert in my locker\n")
+print("If want to exit then type 'bye'")
+respon={
+    # Basic Conversation
+"hi":"Hello.How are you?",
+"hlo":"Hi, how are you",
+"i am fine":"what's next",
+"hello":"Hi.How can i help you",
+"i am also fine":"What's going on today",
+"how are you":"I am fine what about you?",
+"how is your day": "My day is going great! Thanks for asking.",
+"what are you doing": "I'm chatting with you.",
+"what's up": "Not much! What's up with you?",
+"nice to meet you": "Nice to meet you too!",
+"how's life": "Life is good when I can help people.",
+"are you okay": "Yes, I'm doing well.",
+"how can you help me": "I can answer questions, chat, and help with coding.",
+"can you help me": "Of course! What do you need help with?",
+"i need help": "I'm here to help. Tell me your problem.",
+
+Feelings
+"i am excited": "That's awesome! What are you excited about?",
+"i am angry": "Take a deep breath. I'm here to listen.",
+"i am lonely": "You're not alone. I'm here to chat with you.",
+"i am stressed": "Try taking a short break and relaxing.",
+"i am confused": "Tell me what's confusing you.",
+"i feel nervous": "It's normal to feel nervous sometimes.",
+"i am sick": "I hope you recover soon. Take care of yourself.",
+"i feel sleepy": "Maybe it's time for some rest.",
+
+Personal
+"do you have a girlfriend": "No, I'm just an AI assistant.",
+"do you have a boyfriend": "No, I don't.",
+"are you real": "I'm real as an AI program.",
+"are you human": "No, I'm an AI chatbot.",
+"do you have emotions": "I don't have real emotions, but I understand yours.",
+"can you think": "I process information and generate responses.",
+"can you learn": "Yes, I can be improved over time.",
+
+Education
+"what is programming": "Programming is writing instructions for computers.",
+"what is coding": "Coding is the process of creating computer programs.",
+"what is machine learning": "Machine Learning is a branch of AI that learns from data.",
+"what is cybersecurity": "Cybersecurity protects computers and networks from attacks.",
+"what is ethical hacking": "Ethical hacking is finding security weaknesses legally.",
+"what is database": "A database stores and organizes data.",
+"what is html": "HTML is used to create web pages.",
+"what is css": "CSS is used to style web pages.",
+"what is javascript": "JavaScript makes websites interactive.",
+
+Entertainment
+"recommend a movie": "You should watch Interstellar.",
+"recommend a web series": "You can watch Dark or Sherlock.",
+"recommend a song": "Try listening to Believer by Imagine Dragons.",
+"recommend an anime": "Watch Attack on Titan or Death Note.",
+"recommend a book": "Atomic Habits is a great book.",
+
+Sports
+"do you like cricket": "Yes! Cricket is exciting.",
+"who is your favorite cricketer": "There are many great players.",
+"do you play football": "I can only talk about football.",
+
+Food
+"what is your favorite food": "I don't eat, but pizza sounds popular!",
+"i am hungry": "Go grab something healthy to eat.",
+"do you drink water": "No, but you should stay hydrated.",
+
+Time
+"what day is today": "I can tell you if date support is added.",
+"what month is this": "I can answer that using Python's datetime module.",
+"what year is this": "You can get the current year using Python.",
+
+Motivation
+"motivate me": "Believe in yourself. You can do it!",
+"i want to give up": "Don't quit. Every expert was once a beginner.",
+"i failed": "Failure is part of learning.",
+"i want to become successful": "Stay consistent and keep learning every day.",
+
+Coding
+"write python code": "Tell me what program you want.",
+"debug my code": "Sure! Paste your code here.",
+"teach me python": "I'd love to help you learn Python.",
+"teach me c++": "Let's start with the basics of C++.",
+
+Fun
+"tell me a story": "Once upon a time, a curious programmer built an amazing chatbot...",
+"tell me a riddle": "What has keys but can't open locks? A keyboard.",
+"play a game": "Let's play a guessing game!",
+"flip a coin": "Heads!",
+"roll a dice": "You got 4!",
+
+Goodbye
+"see you later": "See you soon!",
+"goodbye": "Goodbye! Have a wonderful day.",
+"have a nice day": "You too! Stay happy.",
+"take care": "Take care of yourself!"
+}
+
+def getresponse(UserQuestion):
+    UserQuestion=UserQuestion.lower()
+    for i in respon:
+        if i in UserQuestion:
+            return respon[i]
+    if "time" in UserQuestion:
+        return "Current Time: " + datetime.now().strftime("%I:%M:%S %p")
+    if "date" in UserQuestion:
+        return "Today's Date: " + datetime.now().strftime("%d-%m-%Y")
+    if "open google" in UserQuestion:
+        webbrowser.open("https://www.google.com")
+        return "Opening Google..."
+    if "open youtube" in UserQuestion:
+        webbrowser.open("https://www.youtube.com")
+        return "Opening YouTube..."
+    if UserQuestion.startswith("search "):
+        query = UserQuestion.replace("search ", "")
+        webbrowser.open(f"https://www.google.com/search?q={query}")
+        return f"Searching Google for {query}"
+    if "open chatgpt" in UserQuestion:
+        webbrowser.open("https://chatgpt.com")
+        return "Opening ChatGPT..."
+
+
+while True:
+    UserInput = input("Please ask your question\n")
+    if UserInput.lower() == "bye":
+        print("Bot Response: Goodbye! Have a nice day.")
+        break
+
+    reply = getresponse(UserInput)
+    print("Bot Response:", reply)
+else:
+print("Please, write your name in alphabetical order\n")
